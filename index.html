@@ -18,7 +18,29 @@ th, td { border:1px solid #aaa; padding:6px 10px; }
 button { margin:5px; padding:6px 10px; border-radius:6px; cursor:pointer; }
 </style>
 </head>
-<body>
+  <!-- Protection contre les raccourcis et le clic droit -->
+<script>
+document.addEventListener("keydown", function(event) {
+    if (event.key === "F12") {
+        event.preventDefault();
+    }
+
+    if (event.ctrlKey && event.shiftKey &&
+        ["I", "J", "C"].includes(event.key.toUpperCase())) {
+        event.preventDefault();
+    }
+
+    if (event.ctrlKey && event.key.toUpperCase() === "U") {
+        event.preventDefault();
+    }
+});
+
+document.addEventListener("contextmenu", function(event) {
+    event.preventDefault();
+});
+</script>
+</body>
+
 
 <h2>
   TP Effet Photoélectrique – Simulation Interactive
@@ -258,23 +280,3 @@ updateInfo();
      </script>
 </body>
 </html>
-<script> document.addEventListener("keydown", function (event){
-
-    if (event.ctrlKey){
-
-       event.preventDefault();
-
-    }
-
-    if(event.keyCode == 123){
-
-       event.preventDefault();
-
-    }
-
-});</script>
-
-<script>document.addEventListener('contextmenu',   
-     event => event.preventDefault()  
-);</script>
-
